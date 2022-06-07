@@ -12,15 +12,6 @@ __all__ = [
 __version__ = '1.0.0'
 
 
-def _weak_callback(wrcb, *args, **kwargs):
-	# static method to resolve a weakref callable and try
-	# to call it with the given args if still available
-	cb = wrcb()
-	if cb is None:
-		return
-	return cb(*args, **kwargs)
-
-
 def _reftype_new(cls, obj, callback=None, **fields):
 	"""Weakref to function, object, or method, with an optional callback
 	of any of those types.
@@ -83,9 +74,18 @@ def reftype(name, fields):
 ref = reftype('', [])  # default ref type with no extra fields
 
 
+def _weak_callback(wrcb, *args, **kwargs):
+	# static method to resolve a weakref callable and try
+	# to call it with the given args if still available
+	cb = wrcb()
+	if cb is None:
+		raise ReferenceError('Weak reference to callback lost.')
+	return cb(*args, **kwargs)
+
+
 def partial(callback, *args, **kwargs):
 	"""Generate functools partial, but with a weak ref to the callable
-	which will be resolved automatically or return None if ref lost.
+	which will be resolved automatically or raise ReferenceError.
 	
 	Args:
 		callback: Callable to create a functools.partial for
