@@ -1,18 +1,27 @@
-# RefUtil
+# Ref Util
+effortless weakrefs to objects, methods, and functions with annotations
 
-## Summary
+## Preamble
 
-There is a fairly common need to reference some data in the callback of a weakref when the object is being garbage collected. This package provides an simple interface for creating new annotated, slotted, refererence types, which subclass weakref.ref in the standard library.
+There is a fairly common need to reference some data in the callback of a weakref when the object is being garbage collected. This package provides a simple interface for creating new annotated, slotted, reference types, which subclass weakref.ref in the standard library.
 
-## Supported Systems
+Documentation consists of this README and the code.
 
-- Python 2.5+
-- Linux
-- Windows
+## Table of Contents
+- [Ref Util](#ref-util)
+	- [Preamble](#preamble)
+	- [Table of Contents](#table-of-contents)
+	- [Technologies](#technologies)
+	- [Example](#example)
+		- [Code](#code)
+		- [Output](#output)
 
-## Examples
+## Technologies
+- python >=2.5
 
-### Example 1 - Code
+## Example
+
+### Code
 
 ```python
 import collections
@@ -72,7 +81,7 @@ del my_callback
 print(subs.subscriptions)
 ```
 
-### Example 1 - Output
+### Output
 
 ```text
 subscription added sub-1
