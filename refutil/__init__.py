@@ -9,7 +9,7 @@ __all__ = [
 ]
 
 
-__version__ = '1.0.0'
+__version__ = '1.0.1'
 
 
 def _reftype_new(cls, obj, callback=None, **fields):
